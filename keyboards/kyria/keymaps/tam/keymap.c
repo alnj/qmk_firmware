@@ -44,7 +44,7 @@ enum layers {
 
 
 // TAP DANCE /////////////////////////////////////////////////////////////////
-// CACV: key that C-A when held, C-C when tapped, and C-V when double tapped
+// CACV: key that C-A when held, KC_COPY when tapped, and KC_PSTE when double tapped
 enum {
     CACV = 0
 };
