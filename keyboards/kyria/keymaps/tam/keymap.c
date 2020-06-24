@@ -18,7 +18,6 @@
 
 enum layers {
     _COLEMAK = 0,
-    _MEDR,
     _NAVR,
     _NSSL,
     _NSL,
