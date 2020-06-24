@@ -5,3 +5,4 @@ EXTRAKEY_ENABLE = yes      # Audio control and System control
 BOOTMAGIC_ENABLE = lite    # Bootmagic lite (only reset)
 #WPM_ENABLE = yes           # Allows the keyboard to display wpm
 TAP_DANCE_ENABLE = yes
+#LTO_ENABLE = YES
