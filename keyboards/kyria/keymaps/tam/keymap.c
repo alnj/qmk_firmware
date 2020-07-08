@@ -18,7 +18,7 @@
 
 enum layers {
     _COLEMAK = 0,
-    _NAVR,
+    _GAME,
     _NSSL,
     _NSL,
     _FUNL
@@ -31,7 +31,7 @@ enum layers {
 #define CTRL_Z MT(MOD_LCTL, KC_Z)
 #define ALT_BS MT(MOD_LALT, KC_BSLS)
 #define GUI_ESC MT(MOD_LGUI, KC_ESC)
-#define NAV_SPC LT(_NAVR, KC_SPC)
+/*#define NAV_SPC LT(_NAVR, KC_SPC)*/
 #define SYM_TAB LT(_NSSL, KC_TAB)
 
 #define SYM_ENT LT(_NSSL, KC_ENT)
@@ -39,6 +39,9 @@ enum layers {
 #define FN_DEL LT(_FUNL, KC_DEL)
 #define CTRL_SL MT(MOD_RCTL, KC_SLSH)
 #define SHFT_O MT(MOD_RSFT, KC_O)
+
+#define COLEMAK DF(_COLEMAK)
+#define GAME DF(_GAME)
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -101,19 +104,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
      _______,  CTRL_Z,    KC_X,    KC_C,    KC_D,    KC_V, _______, _______,    _______, _______,    KC_K,    KC_H, KC_COMM,  KC_DOT, CTRL_SL, _______,\
  //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
-                               TD(CACV),  ALT_BS, GUI_ESC, NAV_SPC, SYM_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, KC_RALT, KC_CAPS \
+                               TD(CACV),  ALT_BS, GUI_ESC,  KC_SPC, SYM_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, KC_RALT, KC_CAPS \
                             //`--------------------------------------------'  `--------------------------------------------'
     ),
 
-    [_NAVR] = LAYOUT( \
+
+        [_GAME] = LAYOUT( \
  //,-----------------------------------------------------.                                      ,-----------------------------------------------------.
-     _______, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                                        KC_AGIN, KC_UNDO,  KC_CUT, KC_COPY, KC_PSTE, _______,\
+     _______,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, _______,\
  //|--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-     _______, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL,                                        KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,\
+     _______,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                           KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, _______,\
  //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
-     _______, KC_GRV,     KC_1,    KC_2,    KC_3, KC_BSLS, _______, _______,    _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______, _______,\
+     _______,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_LCTL, _______,    _______, _______,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SCLN, _______,\
  //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
-                                KC_MINS,    KC_0,  KC_DOT, _______, _______,    _______, _______, RGB_TOG, RGB_MOD, RGB_HUI \
+                                _______, KC_LALT,  KC_ESC,  KC_SPC,  KC_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, _______, COLEMAK \
                             //`--------------------------------------------'  `--------------------------------------------'
     ),
 
@@ -133,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //,-----------------------------------------------------.                                      ,-----------------------------------------------------.
      _______, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                                        KC_AGIN, KC_UNDO,  KC_CUT, KC_COPY, KC_PSTE,  _______,\
  //|--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-     _______, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL,                                        KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,\
+     _______, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL,                                        KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,    GAME, _______,\
  //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
      _______, KC_GRV,     KC_1,    KC_2,    KC_3, KC_BSLS, _______, _______,    _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______, _______,\
  //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
@@ -159,21 +163,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Disabling permissive hold //////////////////////////////////////////////////
 // I only want permissive hold on GUI_ESC
-uint16_t get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case SHFT_A:
-        case ALT_BS:
-        case CTRL_SL:
-        case CTRL_Z:
-        case SHFT_O:
-        case SYM_TAB:
-            // This actually *disables* the permissive hold for these keys.
-            // See issue https://github.com/qmk/qmk_firmware/issues/8999
-            return true;
-        default:
-            return false;
-    }
-}
+/*uint16_t get_permissive_hold(uint16_t keycode, keyrecord_t *record) {*/
+    /*switch (keycode) {*/
+        /*case SHFT_A:*/
+        /*case ALT_BS:*/
+        /*case CTRL_SL:*/
+        /*case CTRL_Z:*/
+        /*case SHFT_O:*/
+        /*case SYM_TAB:*/
+            /*// This actually *disables* the permissive hold for these keys.*/
+            /*// See issue https://github.com/qmk/qmk_firmware/issues/8999*/
+            /*return true;*/
+        /*default:*/
+            /*return false;*/
+    /*}*/
+/*}*/
 ///////////////////////////////////////////////////////////////////////////////
 
 

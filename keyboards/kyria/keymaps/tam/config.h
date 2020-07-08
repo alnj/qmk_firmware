@@ -17,11 +17,12 @@
 #pragma once
 
 // Fix problems with fast typing and homerow mods
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
+#define TAPPING_TERM 150
+//#define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 //#define TAPPING_FORCE_HOLD
 #define EE_HANDS
+#define RETRO_TAPPING
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
