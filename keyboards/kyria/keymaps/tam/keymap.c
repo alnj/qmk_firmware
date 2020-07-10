@@ -42,7 +42,7 @@ enum layers {
 
 #define COLEMAK DF(_COLEMAK)
 #define GAME DF(_GAME)
-#define NUM_ESC MT(_NSL, KC_ESC)
+#define NUM_ESC LT(_NSL, KC_ESC)
 //////////////////////////////////////////////////////////////////////////////
 
 
