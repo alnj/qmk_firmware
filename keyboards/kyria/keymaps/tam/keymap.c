@@ -21,6 +21,7 @@ enum layers {
     _GAME,
     _NSSL,
     _NSL,
+    _MOS,
     _FUNL
 };
 
@@ -28,11 +29,16 @@ enum layers {
 
 // Mod Tap / Layer Tap ///////////////////////////////////////////////////////
 #define SHFT_A MT(MOD_LSFT, KC_A)
+#define S_CLN MT(MOD_LSFT, KC_COLN)
+#define S_SEM MT(MOD_LSFT, KC_SCLN)
 #define CTRL_Z MT(MOD_LCTL, KC_Z)
+#define C_GRV MT(MOD_LCTL, KC_GRV)
+#define C_TLD MT(MOD_LCTL, KC_TILD)
 #define ALT_BS MT(MOD_LALT, KC_BSLS)
 #define GUI_ESC MT(MOD_LGUI, KC_ESC)
 /*#define NAV_SPC LT(_NAVR, KC_SPC)*/
 #define NUM_TAB LT(_NSL, KC_TAB)
+#define MOS_TAB LT(_MOS, KC_TAB)
 
 #define SYM_ENT LT(_NSSL, KC_ENT)
 #define NUM_BSC LT(_NSL, KC_BSPC)
@@ -72,7 +78,7 @@ int cur_dance (qk_tap_dance_state_t *state) { // track the tapdance state to ret
       return DOUBLE_SINGLE_TAP;
   }
   else {
-      return 3; // any number higher than the maximum state value you return above
+      return 3; // any number higher than the maximum state value you return abov
   }
 }
 void CA_CC_CV_finished(qk_tap_dance_state_t *state, void *user_data) { // handle the possible states for each tapdance keycode you define:
@@ -105,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
      _______,  CTRL_Z,    KC_X,    KC_C,    KC_D,    KC_V, _______, _______,    _______, _______,    KC_K,    KC_H, KC_COMM,  KC_DOT, CTRL_SL, _______,\
  //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
-                                 FN_DEL,  ALT_BS, GUI_ESC,  KC_SPC, NUM_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, KC_RALT, KC_CAPS \
+                                 FN_DEL,  ALT_BS, GUI_ESC,  KC_SPC, MOS_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, KC_RALT, KC_CAPS \
                             //`--------------------------------------------'  `--------------------------------------------'
     ),
 
@@ -117,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
      _______,    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, _______, _______,    _______, _______,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, _______,\
  //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
-                                _______, KC_LALT, NUM_ESC,  KC_SPC,  KC_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, _______, COLEMAK \
+                                _______, KC_LALT, NUM_ESC,  KC_SPC,  KC_TAB,    SYM_ENT, NUM_BSC,  FN_DEL, KC_LSFT, COLEMAK \
                             //`--------------------------------------------'  `--------------------------------------------'
     ),
 
@@ -137,14 +143,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  //,-----------------------------------------------------.                                      ,-----------------------------------------------------.
      _______, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                                        KC_AGIN, KC_UNDO,  KC_CUT, KC_COPY, KC_PSTE,  _______,\
  //|--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
-     _______, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL,                                        KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,    GAME, _______,\
+     _______,   S_SEM,    KC_4,    KC_5,    KC_6,  KC_EQL,                                        KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,    GAME, _______,\
  //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
-     _______, KC_GRV,     KC_1,    KC_2,    KC_3, KC_BSLS, _______, _______,    _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______, _______,\
+     _______,  C_GRV,     KC_1,    KC_2,    KC_3, KC_BSLS, _______, _______,    _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______, _______,\
  //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
                                 _______, KC_MINS,  KC_DOT,    KC_0, KC_MINS,    _______, _______, RGB_TOG, RGB_MOD, RGB_HUI \
                             //`--------------------------------------------'  `--------------------------------------------'
     ),
 
+    [_MOS] = LAYOUT( \
+ //,-----------------------------------------------------.                                      ,-----------------------------------------------------.
+     _______, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC,                                        KC_AGIN, KC_WH_D, KC_WH_U, KC_COPY, KC_PSTE,  _______,\
+ //|--------+--------+--------+--------+--------+--------|                                      |--------+--------+--------+--------+--------+--------|
+     _______,   S_SEM,    KC_4,    KC_5,    KC_6,  KC_EQL,                                        KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,  KC_BTN3, _______,\
+ //|--------+--------+--------+--------+--------+--------+-----------------.  ,-----------------+--------+--------+--------+--------+--------+--------|
+     _______,  C_GRV,     KC_1,    KC_2,    KC_3, KC_BSLS, _______, _______,    _______, _______, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, _______, _______,\
+ //`--------------------------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------------------------'
+                                _______, KC_MINS,  KC_DOT,    KC_0, KC_MINS,    KC_BTN2, KC_BTN1, RGB_TOG, RGB_MOD, RGB_HUI \
+                            //`--------------------------------------------'  `--------------------------------------------'
+    ),
     [_FUNL] = LAYOUT( \
  //,-----------------------------------------------------.                                      ,-----------------------------------------------------.
      _______, KC_F12,  KC_F7,   KC_F8,   KC_F9,   KC_PSCR,                                        KC_AGIN, KC_UNDO,  KC_CUT, KC_COPY, KC_PSTE,  _______,\
