@@ -22,7 +22,7 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 //#define TAPPING_FORCE_HOLD
 #define EE_HANDS
-#define RETRO_TAPPING
+//#define RETRO_TAPPING
 
 // Recommended for heavy chording.
 #define QMK_KEYS_PER_SCAN 4
